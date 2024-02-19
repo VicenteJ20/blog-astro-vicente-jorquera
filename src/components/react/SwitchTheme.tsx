@@ -13,10 +13,8 @@ const SwitchTheme = () => {
 
   useEffect(() => {
     if (theme === 'dark') {
-      console.log('dark')
       document.querySelector('html').classList.add('dark')
     } else {
-      console.log('light')
       document.querySelector('html').classList.remove('dark')
     }
   }, [theme])
@@ -26,8 +24,9 @@ const SwitchTheme = () => {
   }
 
   return (
-    <button type='button' title='change theme button' onClick={handleTheme} className='p-0 m-0 border-none flex items-center pt-0.5 text-lg'>
+    <button type='button' title='change theme button' onClick={handleTheme} className='p-0 m-0 border-none flex items-center sm:pt-[0.2rem] text-lg gap-2 justify-center hover:text-lime-700 dark:hover:text-lime-500 transition-all duration-300 ease-in-out'>
       {theme === 'dark' ? Sun : Moon}
+      <span className='sm:hidden'>Cambiar tema</span>
     </button>
   )
 }
