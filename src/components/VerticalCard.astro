@@ -24,11 +24,11 @@ const { frontmatter, url, showUserPic } = Astro.props;
   >
     <ul class="flex flex-row gap-4 items-center text-sm">
       <li
-        class="border border-slate-500 px-4 py-1 rounded-full w-fit font-normal text-slate-500"
+        class="border border-slate-500 dark:border-slate-300 px-4 py-1 rounded-full w-fit font-normal text-slate-500 dark:text-slate-300"
       >
         {frontmatter.category}
       </li>
-      <li class="font-medium text-slate-500">
+      <li class="font-medium text-slate-500 dark:text-slate-300">
         {frontmatter.pubDate}
       </li>
     </ul>
@@ -39,7 +39,7 @@ const { frontmatter, url, showUserPic } = Astro.props;
         {frontmatter.title}
       </a>
     </h2>
-    <p class="text-zinc-500 line-clamp-3">{frontmatter.description}</p>
+    <p class="text-zinc-500 dark:text-zinc-300 line-clamp-3">{frontmatter.description}</p>
     <ul class="flex flex-row gap-3 items-center">
       {
         showUserPic && (
@@ -55,7 +55,7 @@ const { frontmatter, url, showUserPic } = Astro.props;
         )
       }
       <li>
-        <span class="text-slate-700 font-semibold">{frontmatter.author}</span>
+        <span class="text-slate-700 dark:text-zinc-100 font-semibold">{frontmatter.author}</span>
       </li>
     </ul>
   </div>
