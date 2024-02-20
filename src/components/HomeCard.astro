@@ -1,0 +1,59 @@
+---
+import { Image } from "astro:assets";
+
+const { frontmatter, url } = Astro.props;
+---
+
+<article class="grid grid-cols-3 gap-5 lg:gap-10 min-h-fit col-span-3">
+  <figure class="col-span-3 lg:col-span-2 max-h-[27rem] w-full block relative">
+    <a href={url}>
+      <Image
+        width={1000}
+        height={600}
+        loading='eager'
+        src={frontmatter.image.url}
+        alt={frontmatter.title}
+        class="w-full object-cover max-h-full object-top rounded-2xl transition-all duration-300 ease-in-out hover:transform hover:shadow-lg"
+      /></a
+    >
+    <span
+      class="top-4 left-6 absolute bg-lime-600 text-white px-3 rounded-full font-semibold"
+      >Destacado</span
+    >
+  </figure>
+  <div
+    class="w-full flex flex-col justify-center col-span-3 lg:col-span-1 gap-3 md:gap-5 transition-all duration-300 ease-in-ou rounded-2xl text-slate-900"
+  >
+    <ul class="flex flex-row gap-6 items-center text-sm">
+      <li
+        class="border border-slate-500 px-4 py-1 rounded-full w-fit font-normal text-slate-500"
+      >
+        {frontmatter.category}
+      </li>
+      <li class="font-medium text-slate-500" id="pubDate">
+        {frontmatter.pubDate}
+      </li>
+    </ul>
+    <h2 class="text-2xl md:text-3xl font-semibold">
+      <a href={url} class='dark:text-zinc-200 hover:underline transition-all duration-300 ease-in-out'>
+        {frontmatter.title}
+      </a>
+    </h2>
+    <p class="text-zinc-500">{frontmatter.description}</p>
+    <ul class="flex flex-row gap-3 items-center">
+      <li>
+        <Image
+          width={32}
+          height={32}
+          loading='eager'
+          src={frontmatter.authorImage}
+          alt={frontmatter.author}
+          class="w-8 h-8 rounded-full"
+        />
+      </li>
+      <li>
+        <span class="text-slate-700">{frontmatter.author}</span>
+      </li>
+    </ul>
+  </div>
+</article>

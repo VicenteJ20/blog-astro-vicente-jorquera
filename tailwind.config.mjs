@@ -5,7 +5,7 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['Lexend', ...defaultTheme.fontFamily.sans],
+				sans: ['Manrope', ...defaultTheme.fontFamily.sans],
 			}
 		},
 	},

@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+
+const { frontmatter, url } = Astro.props;
+---
+
+<article
+  class="col-span-3 lg:col-span-1 grid grid-cols-3 gap-3 justify-start items-start h-fit"
+>
+  <figure class="col-span-3 max-h-[27rem]">
+    <a href={url}>
+      <Image
+        width={500}
+        height={500}
+        loading="eager"
+        src={frontmatter.image.url}
+        alt={frontmatter.title}
+        class="w-full object-cover object-top rounded-xl"
+      /></a
+    >
+  </figure>
+  <div
+    class="w-full h-full flex flex-col items-start p-0 col-span-3 gap-1.5 hover:transform transition-all duration-300 ease-in-out"
+  >
+    <ul class="flex flex-row gap-6 items-center text-sm">
+      <li
+        class="border border-slate-500 px-4 py-1 rounded-full w-fit font-normal text-slate-500"
+      >
+        {frontmatter.category}
+      </li>
+      <li class="font-medium text-slate-500">
+        {frontmatter.pubDate}
+      </li>
+    </ul>
+    <h2
+      class="text-lg lg:text-xl dark:text-zinc-200 font-semibold hover:underline"
+    >
+      <a href={url}>
+        {frontmatter.title}
+      </a>
+    </h2>
+    <p class="text-zinc-500 line-clamp-3">{frontmatter.description}</p>
+    <ul class="flex flex-row gap-3 items-center">
+      <li>
+        <Image
+          width={32}
+          height={32}
+          src={frontmatter.authorImage}
+          alt={frontmatter.author}
+          class="w-8 h-8 rounded-full"
+        />
+      </li>
+      <li>
+        <span class="text-slate-700">{frontmatter.author}</span>
+      </li>
+    </ul>
+  </div>
+</article>

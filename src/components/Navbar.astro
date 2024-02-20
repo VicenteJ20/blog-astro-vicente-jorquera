@@ -5,13 +5,13 @@ import SwitchTheme from '../components/react/SwitchTheme'
 import BurgerMenu from '../components/react/BurgerMenu'
 ---
 
-<header class='fixed top-0 left-0 z-50 right-0 max-w-screen p-0 bg-white border-b border-[#e4e4e7] dark:bg-zinc-800'>
+<header class='fixed top-0 left-0 z-50 right-0 max-w-screen p-0 bg-zinc-50 border-[#e4e4e7] dark:bg-zinc-900'>
   <nav class='flex flex-col sm:flex-row gap-4 justify-between max-w-screen-xl mx-auto sm:px-8 py-4 px-4 lg:px-4 sm:items-center dark:text-white relative'>
-    <h2 class='font-semibold flex flex-row gap-1 text-lg'>
+    <h2 class=' flex flex-row gap-1 text-lg'>
       <a href='https://www.vicentejorquera.dev/' target='_blank' rel='no-referrer' class="font-bold flex flex-row items-center gap-1"><Servers /> Vicente Jorquera</a>
       <a href='/' rel="no-referrer"> / blog</a>
     </h2>
-    <ul id="nav-ul" class='gap-6 items-center dark:text-zinc-300 hidden sm:flex border-b border-zinc-400 sm:border-none sm:flex-row'>
+    <ul id="nav-ul" class='gap-6 items-center dark:text-zinc-300 hidden sm:flex border-b border-zinc-400 sm:border-none sm:flex-row font-medium'>
       <li class='w-full p-0 m-0 sm:w-fit border-b border-zinc-300 sm:border-none'>
         <Navlink url='/articulos' name='Artículos' />
       </li>
