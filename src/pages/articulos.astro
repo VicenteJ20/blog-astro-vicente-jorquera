@@ -8,10 +8,10 @@ const allPosts = await Astro.glob('../pages/articulos/*.md')
 <GeneralLayout title='Artículos'>
   <section class='flex flex-col gap-8 lg:gap-14'>
     <Header title='Todos los artículos' />
-    <section class="grid grid-cols-3 gap-5 lg:gap-10">
+    <section class="grid grid-cols-3 gap-5 lg:gap-10 min-h-full">
       {
         allPosts.map((post) => (
-          <VerticalCard frontmatter={post.frontmatter} url={post.url} />
+          <VerticalCard frontmatter={post.frontmatter} url={post.url} showUserPic={false} />
         ))
       }
     </section>

@@ -11,7 +11,7 @@ const allPosts = await Astro.glob("../pages/articulos/*.md");
       allPosts.map((post, index) => (
         post.frontmatter.highlight ?
         <HomeCard frontmatter={post.frontmatter} url={post.url} />
-        : <VerticalCard frontmatter={post.frontmatter} url={post.url} /> 
+        : <VerticalCard frontmatter={post.frontmatter} url={post.url} showUserPic /> 
       ))
     }
   </section>
