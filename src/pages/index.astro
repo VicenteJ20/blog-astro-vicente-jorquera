@@ -4,7 +4,7 @@ const allPosts = await Astro.glob("../pages/articulos/*.md");
 ---
 
 <GeneralLayout title="Inicio">
-  <section class="grid grid-cols-3 gap-4">
+  <section class="grid grid-cols-3 gap-y-12 gap-x-8">
     {
       allPosts.map((post, index) => (
         <article
@@ -16,7 +16,7 @@ const allPosts = await Astro.glob("../pages/articulos/*.md");
             class={`${index === 0 ? "col-span-3 lg:col-span-2" : "col-span-3"} rounded-2xl max-h-[27rem] w-full object-cover object-top`}
           />
           <div
-            class={`w-full h-full flex flex-col justify-center ${index === 0 ? "col-span-3 lg:col-span-1 gap-5" : "col-span-3  gap-1.5"}`}
+            class={`w-full h-full flex flex-col justify-center ${index === 0 ? "col-span-3 lg:col-span-1 gap-3 md:gap-5" : "col-span-3  gap-1.5"}`}
           >
             <ul class="flex flex-row gap-6 items-center text-sm">
               <li class="border border-slate-500 px-4 py-1 rounded-full w-fit font-normal text-slate-500">
@@ -26,7 +26,7 @@ const allPosts = await Astro.glob("../pages/articulos/*.md");
                 {post.frontmatter.pubDate}
               </li>
             </ul>
-            <h2 class={`${index === 0 ? "text-3xl font-semibold" : "text-lg"}`}>
+            <h2 class={`${index === 0 ? "text-2xl md:text-3xl font-semibold" : "text-lg"}`}>
               {post.frontmatter.title}
             </h2>
             <p class="text-zinc-500">{post.frontmatter.description}</p>
