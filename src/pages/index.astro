@@ -1,7 +1,56 @@
 ---
-import GeneralLayout from '../layouts/GeneralLayout.astro'
+import GeneralLayout from "../layouts/GeneralLayout.astro";
+const allPosts = await Astro.glob("../pages/articulos/*.md");
 ---
 
-<GeneralLayout title='Inicio'>
-	<h1>Hola mundo este es el inicio</h1>
+<GeneralLayout title="Inicio">
+  <section class="grid grid-cols-3 gap-4">
+    {
+      allPosts.map((post, index) => (
+        <article
+          class={`grid grid-cols-3 ${index === 0 ? "col-span-3 gap-5 lg:gap-10" : "flex-col"}`}
+        >
+          <img
+            src={post.frontmatter.image.url}
+            alt={post.frontmatter.title}
+            class={`${index === 0 ? "col-span-3 lg:col-span-2" : "col-span-3"} rounded-2xl max-h-[27rem] w-full object-cover object-top`}
+          />
+          <div
+            class={`w-full h-full flex flex-col justify-center ${index === 0 ? "col-span-3 lg:col-span-1 gap-5" : "col-span-3  gap-1.5"}`}
+          >
+            <ul class="flex flex-row gap-6 items-center text-sm">
+              <li class="border border-slate-500 px-4 py-1 rounded-full w-fit font-normal text-slate-500">
+                {post.frontmatter.category}
+              </li>
+              <li class="font-medium text-slate-500" id="pubDate">
+                {post.frontmatter.pubDate}
+              </li>
+            </ul>
+            <h2 class={`${index === 0 ? "text-3xl font-semibold" : "text-lg"}`}>
+              {post.frontmatter.title}
+            </h2>
+            <p class="text-zinc-500">{post.frontmatter.description}</p>
+            <ul class="flex flex-row gap-3 items-center">
+              <li>
+                <img src={post.frontmatter.authorImage} alt={post.frontmatter.author} class="w-8 h-8 rounded-full" />
+              </li>
+              <li>
+                <span class="text-slate-700">{post.frontmatter.author}</span>
+              </li>
+            </ul>
+          </div>
+        </article>
+      ))
+    }
+  </section>
 </GeneralLayout>
+
+<script>
+  const pubDate = document.getElementById("pubDate");
+  const date = new Date(pubDate.textContent);
+  pubDate.textContent = date.toLocaleDateString("es-CL", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+</script>
