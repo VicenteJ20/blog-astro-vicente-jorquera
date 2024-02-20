@@ -11,4 +11,4 @@ image:
 category: 'SEO'
 ---
 
-# Primera publicación de este blog
+# Mejorar el SEO de tu aplicación con NextJS 14 y app router
