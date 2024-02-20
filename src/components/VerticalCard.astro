@@ -5,9 +5,9 @@ const { frontmatter, url } = Astro.props;
 ---
 
 <article
-  class="col-span-3 lg:col-span-1 grid grid-cols-3 gap-3 justify-start items-start h-fit"
+  class="col-span-3 lg:col-span-1 grid grid-cols-3 gap-3 justify-start items-start min-h-fit"
 >
-  <figure class="col-span-3 max-h-[27rem]">
+  <figure class="col-span-3 max-h-[27rem] block">
     <a href={url}>
       <Image
         width={500}
@@ -15,7 +15,7 @@ const { frontmatter, url } = Astro.props;
         loading="eager"
         src={frontmatter.image.url}
         alt={frontmatter.title}
-        class="w-full object-cover object-top rounded-xl"
+        class="w-full object-cover object-top rounded-xl max-h-full"
       /></a
     >
   </figure>
