@@ -36,7 +36,7 @@ const { frontmatter, url } = Astro.props;
           {frontmatter.author}
         </p>
       </div>
-      <SocialLinks url={url} />
+      <SocialLinks url={url} content={frontmatter.title} />
     </div>
 		<Image width={1000} height={600} src={frontmatter.image.url} alt={frontmatter.image.alt} class='rounded-lg w-full max-h-[38rem] object-cover object-top' loading='eager' />
   </section>
