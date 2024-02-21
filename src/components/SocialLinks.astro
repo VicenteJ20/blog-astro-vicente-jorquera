@@ -1,24 +1,16 @@
 ---
 const { url } = Astro.props
-import Linkedin from '../icons/Linkedin.astro'
-import Twitter from '../icons/Twitter.astro'
-import Instagram from '../icons/Instagram.astro'
+import ShareBtn from '../components/ShareBtn.astro'
 ---
 
 <ul class='flex items-center gap-3 text-xl'>
   <li>
-    <a href={url} class='block border-2 border-slate-200 bg-white p-2 rounded-full dark:border-slate-300 dark:text-white dark:bg-slate-800 transition-all ease-in-out duration-300 hover:bg-lime-100 dark:hover:bg-lime-800'>
-      <Linkedin />
-    </a>
+    <ShareBtn url={url} title={'Linkedin'} />
   </li>
   <li>
-    <a href={url} class='block border-2 border-slate-200 bg-white p-2 rounded-full dark:border-slate-300 dark:text-white dark:bg-slate-800 transition-all ease-in-out duration-300 hover:bg-lime-100 dark:hover:bg-lime-800'>
-      <Twitter />
-    </a>
+    <ShareBtn url={url} title={'Twitter'} />
   </li>
   <li>
-    <a href={url} class="block border-2 border-slate-200 bg-white p-2 rounded-full dark:border-slate-300 dark:text-white dark:bg-slate-800 transition-all ease-in-out duration-300 hover:bg-lime-100 dark:hover:bg-lime-800">
-      <Instagram />
-    </a>
+    <ShareBtn url={url} title={'Instagram'} />
   </li>
 </ul>
