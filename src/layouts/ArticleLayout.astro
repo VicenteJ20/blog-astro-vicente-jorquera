@@ -1,8 +1,56 @@
 ---
-import GeneralLayout from './GeneralLayout.astro'
-const { frontmatter } = Astro.props
+import Image from "astro/components/Image.astro";
+import GeneralLayout from "./GeneralLayout.astro";
+import SocialLinks from "../components/SocialLinks.astro";
+const { frontmatter, url } = Astro.props;
 ---
 
 <GeneralLayout title={frontmatter.title}>
-	<slot />
+  <section class="flex flex-col gap-4 my-5">
+    <ul class="text-sm flex flex-row gap-6 items-center">
+      <li
+        class="px-3 py-2 rounded-full border border-slate-400 text-slate-700 dark:text-slate-300 w-fit"
+      >
+        {frontmatter.category}
+      </li>
+      <li class="date text-slate-700 dark:text-slate-300">
+        {frontmatter.pubDate}
+      </li>
+    </ul>
+    <h1
+      class="text-2xl md:text-3xl lg:text-5xl font-semibold leading-loose text-slate-800 dark:text-slate-200"
+    >
+      {frontmatter.title}
+    </h1>
+    <div class="flex flex-row gap-4 justify-between mt-8">
+      <div class="flex flex-row gap-3 items-center">
+        <Image
+          src={frontmatter.authorImage}
+          alt={frontmatter.author}
+          class="rounded-full w-8 h-8"
+          width={32}
+          height={32}
+					loading='eager'
+        />
+        <p class="text-sm text-slate-700 dark:text-slate-300 font-semibold">
+          {frontmatter.author}
+        </p>
+      </div>
+      <SocialLinks url={url} />
+    </div>
+		<Image width={1000} height={600} src={frontmatter.image.url} alt={frontmatter.image.alt} class='rounded-lg w-full max-h-[38rem] object-cover object-top' loading='eager' />
+  </section>
+  <article class='text-slate-700 dark:text-slate-200'>
+    <slot />
+  </article>
 </GeneralLayout>
+
+<script>
+  const frontDate = document.getElementsByClassName("date")[0];
+  const date = new Date(frontDate.textContent);
+  frontDate.textContent = date.toLocaleDateString("es-CL", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+</script>

@@ -12,4 +12,4 @@ category: 'Despliegue en Linux'
 highlight: true
 ---
 
-# Primera publicación de este blog
+## Primera publicación de este blog

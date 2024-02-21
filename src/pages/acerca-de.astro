@@ -1,0 +1,36 @@
+---
+import GeneralLayout from "../layouts/GeneralLayout.astro";
+import Header from "../components/Header.astro";
+---
+
+<GeneralLayout title="Acerca de">
+  <section class='flex flex-col gap-4'>
+    <Header title="Acerca de" />
+    <p>
+      Hola, soy <strong>Vicente Jorquera</strong>. Soy un desarrollador web full stack, Analista programador y estudiante de último año de Ingeniería en <strong>INACAP Curicó.</strong> Durante este último tiempo me he centrado en crear webs y contenido en mis redes sociales personales que ayuden a otros a aprender y mejorar sus habilidades, además de utilizar este contenido como un historial de mi progreso y aprendizaje que pueda ser útil complementando mi CV y mi portafolio personal, que puedes encontrar aquí: <a class='text-lime-500 font-medium' href="https://www.vicentejorquera.dev/" target='_blank'>vicentejorquera.dev</a>.
+    </p>
+    <p>
+      Respecto a este blog, es un espacio donde compartiré contenido sobre desarrollo web, programación, tecnología, redes, sistemas operativos y otros temas que me interesen. La idea es que este blog sea un espacio donde pueda compartir mis conocimientos, experiencias y aprendizajes con cualquier persona que tenga interés en estos temas y que se haga preguntas como las que yo me suelo hacer y que muchas veces no encuentro respuestas en internet, o al menos no respuestas claras.
+    </p>
+    <h3 class='text-xl font-medium'>¿Te interesa conocer un poco más de mi o quieres que trabajemos juntos?</h3>
+    <p>Puedes seguirme y contactarme en mis redes sociales o puedes enviarme un correo a través del formulario disponible en mi web principal: <a class="" href='https://www.vicentejorquera.dev'>vicentejorquera.dev</a> </p>
+
+  </section>
+</GeneralLayout>
+
+
+<style>
+  a {
+    color: rgb(8, 161, 41);
+    transition: all 0.3s ease-in-out;
+  }
+
+  a:hover {
+    color: rgb(5, 93, 24);
+    text-decoration: underline;
+  }
+
+  a:visited {
+    color: rgb(141, 8, 161);
+  }
+</style>
