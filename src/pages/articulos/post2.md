@@ -6,7 +6,7 @@ description: 'En este breve pero importante artículo te cuento como puedes util
 author: 'Vicente Jorquera'
 authorImage: 'https://avatars.githubusercontent.com/u/88851263?v=4'
 image:
-    url: 'https://images.unsplash.com/photo-1487014679447-9f8336841d58?q=80&w=2805&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    url: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2944&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     alt: 'Mockup representantivo'
 category: 'SEO'
 ---
