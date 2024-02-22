@@ -40,7 +40,7 @@ const { frontmatter, url } = Astro.props;
     </div>
 		<Image width={1000} height={600} src={frontmatter.image.url} alt={frontmatter.image.alt} class='rounded-lg w-full max-h-[38rem] object-cover object-top' loading='eager' />
   </section>
-  <article class='text-slate-700 dark:text-slate-200'>
+  <article class='text-slate-700 dark:text-slate-200 article-md max-w-screen-lg mx-auto'>
     <slot />
   </article>
 </GeneralLayout>
@@ -54,3 +54,89 @@ const { frontmatter, url } = Astro.props;
     day: "numeric",
   });
 </script>
+
+<style is:global>
+  .article-md > p {
+    font-size: 1.125rem;
+    line-height: 1.5;
+    margin: 1rem 0;
+  }
+  .article-md h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  .article-md h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  .article-md ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .article-md ul li ul {
+    list-style: circle;
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .article-md ul li a {
+    transition: all 0.3s ease-in-out;
+    color: rgb(215, 146, 7);
+    font-weight: 500;
+  }
+
+  .article-md ul li a:hover {
+    color: rgb(0, 149, 20);
+    text-decoration: underline;
+  }
+
+  .article-md ul li a:visited {
+    color: rgb(150, 4, 179);
+  }
+
+  .article-md img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem auto;
+    border-radius: 1rem;
+  }
+
+  .article-md ol {
+    list-style: decimal;
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-weight: 500;
+    margin: 1rem 0;
+  }
+
+  .article-md ol > li {
+    margin: 0 0 0 0.5rem;
+  }
+
+  .article-md ol > li > ul {
+    list-style: circle;
+    padding-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+  }
+
+  .article-md pre {
+    margin: 1rem 0 !important;
+  }
+</style>
