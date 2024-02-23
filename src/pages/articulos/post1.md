@@ -6,7 +6,7 @@ description: "En este artículo te comento como hacer un despliegue de tu aplica
 author: "Vicente Jorquera"
 authorImage: "https://avatars.githubusercontent.com/u/88851263?v=4"
 image:
-  url: "https://images.unsplash.com/photo-1487014679447-9f8336841d58?q=80&w=2805&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  url: "https://blog-vicente-jorquera.s3.amazonaws.com/instalar-nextjs-en-tu-servidor-linux/shot-so-large.webp"
   alt: "Mockup representativo."
 category: "Despliegue en Linux"
 highlight: true
@@ -81,13 +81,13 @@ El comando anterior se encargará de refrescar los repositorios en caso de que t
 
 ### Finalmente deberíamos ver que el atributo **loaded** y **active** están correctos, tal como se ve en la siguiente imagen:
 
-![Estado de Nginx](https://www.ubuntupit.com/wp-content/uploads/2020/09/systemctl-status-Nginx-web-server.jpeg)
+![Estado de Nginx](https://blog-vicente-jorquera.s3.amazonaws.com/instalar-nextjs-en-tu-servidor-linux/status_nginx.webp)
 
 Una vez tengamos instalado y funcionando NGINX podremos ver su web de ejemplo que viene precargada de forma automática una vez instalemos el servicio, para hacer esto tenemos varias formas, una podría ser utilizando **curl** dentro de la misma terminal al localhost, sin embargo, lo que nos interesa es compartir nuestra aplicación con el mundo, por esto debemos asegurarnos de buscar por ahora la **IP PÚBLICA** de la máquina en el navegador, obviamente en este punto es necesario habilitar una regla en el firewall del servidor y/o del servicio cloud, por ejemplo, en **AWS** es necesario agregar una regla de entrada **(inbound rule)** ya sea desde nuestra IP o cualquier IP al puerto 80 **(HTTP)** o el puerto 443 **(HTTPS)** si planeas agregar un certificado SSL al servidor.
 
 Si todo ha ido como se espera, a este punto deberíamos ser capaces de buscar la IP pública de nuestra máquina en un navegador web y ver la siguiente pantalla de NGINX.
 
-![NGINX HOME PAGE](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fubuntucommunity.s3.dualstack.us-east-2.amazonaws.com%2Foriginal%2F2X%2F7%2F7504d83a9fe8c09d861b2f7c49e144ac773f0c0d.png&f=1&nofb=1&ipt=8f89d926964c5fd42217675f90fcf19419598ae799ea3628b7e7ebaf55970f34&ipo=images)
+![NGINX HOME PAGE](https://blog-vicente-jorquera.s3.amazonaws.com/instalar-nextjs-en-tu-servidor-linux/nginx_running_on_ip.webp)
 
 ### A continuación debemos preparar nuestro entorno de ejecución para nuestro código, para esto debemos descargar NodeJS, NPM y Git si tenemos un repositorio con el código.
 
@@ -201,21 +201,89 @@ Lo primero es situarse en la ruta donde raíz de nuestro proyecto, en mi caso en
 Una vez ubicados en la ruta raíz procedemos a ejecutar el siguiente comando:
 
 ```
-    pm2 start app
+    pm2 start npm --name 'my-app' -- start
 ```
 
-El comando pm2 start se encargará de ejecutar la aplicación en nuestro directorio raíz, en caso de existir una build como es nuestro caso pondrá esta build en ejecución, sin embargo, si estamos en desarrollo aún y utilizamos pm2, este servicio nos permitirá ejecutarlo de igual manera.
+El comando anterior se encargará de ejecutar nuestra aplicación de NextJS compilada y le asignará el nombre de **my-app** al gestor de procesos **pm2**, otro de los beneficios agregados de **PM2** es que nuestra aplicación se reiniciará automáticamente si se crashea en producción.
 
-Mientras tanto la frase **app** es el nombre de la carpeta que contiene las páginas y rutas en NextJS.
-
-A continuación veremos la siguiente salida:
+Una vez hayamos ejecutado el comando previo y tengamos éxito veremos la siguiente salida:
 
 ```
-    [PM2] Starting /home/ubuntu/proyecto/app-ejemplo/src/app in fork_mode (1 instance)
+    [PM2] Starting /usr/bin/npm in fork_mode (1 instance)
     [PM2] Done.
     ┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
     │ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
     ├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
-    │ 0  │ app                │ fork     │ 0    │ online    │ 0%       │ 38.3mb   │
+    │ 0  │ my-app             │ fork     │ 0    │ online    │ 0%       │ 7.6mb    │
     └────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
 ```
+
+## Paso 4: Configurar NGINX para que dirija las peticiones en el puerto 80 a nuestra app
+
+Esto nos permitirá tener un despliegue escalable, ya que cuando aumenten las instancias de nuestra aplicación o tengamos diferentes servicios basados en la región desde donde se está haciendo la petición (por ejemplo) podremos configurarlo con mucha facilidad en nuestro servidor NGINX, por ahora, vamos a redireccionar las peticiones del puerto 80 al 3000 de la siguiente manera:
+
+```
+    sudo nano /etc/nginx/sites-available/my-app.com
+```
+
+Con el comando anterior abriremos un nuevo archivo llamado **my-app.com** en la ruta **/etc/nginx/sites-available/** en el editor **nano**, si no tienes nano instalado, puedes reemplazar nano por **vi** y seguro que funcionará en tu distribución. Continuando con la explicación, se recomienda que reemplaces **my-app-com** por el nombre de tu aplicación o el dominio de tu web, esto no es estrictamente necesario pero es una práctica común en servidores de NGINX para diferenciar los sitios que existen dentro de **NGINX**.
+
+A continuación debemos pegar el siguiente código en el archivo que acabamos de crear: (UTILIZANDO LA IP)
+
+```
+    server {
+        listen 80;
+        location / {
+                proxy_pass http://localhost:3000;
+        }
+    }
+```
+
+En caso de tener un dominio personalizado se debe agregar este código:
+
+```
+    server {
+        listen 80;
+        server_name tudominio.com www.tudominio.com;
+        location / {
+            proxy_pass http://localhost:3000;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+        }
+    }
+```
+
+Esto le dice a NGINX que escuche en el puerto 80 y cuando reciba una petición internamente la redirija al puerto 3000 abierto en el localhost, de esta manera bastará con cargar la IP pública para acceder a nuestra aplicación.
+
+En este momento ya deberíamos tener nuestra aplicación funcionando y visible a través de NGINX como podemos ver en la siguiente imagen:
+
+## Paso 5: Configurando nuestra app de PM2 como servicio
+
+Como mencioné al inicio de este artículo, una funcionalidad específica de esta guía era hacer que nuestra aplicación sea accesible por el mundo nada más encendamos el servidor, sin la necesidad de estar manualmente encendiendo la app con pm2. El proceso es bastante simple y se realiza con el siguiente comando:
+
+```
+    pm2 startup systemd
+```
+
+Esto nos arrojará el siguiente resultado:
+
+```
+    ubuntu@ubuntu:~/proyecto/app-ejemplo$ pm2 startup systemd
+    [PM2] Init System found: systemd
+    [PM2] To setup the Startup Script, copy/paste the following command:
+    sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ubuntu --hp /home/ubuntu
+```
+
+Finalmente copiamos la última línea y la ejecutamos en nuestra terminal. Volvemos a ejecutar **pm2 save**
+
+Luego nos queda inicializar nuestro servicio con systemd (Es importante considerar que **ubuntu** se refiere al usuario en la máquina):
+
+```
+    sudo systemctl start pm2-ubuntu && sudo systemctl status pm2-ubuntu
+```
+
+En caso de que nos arroje un error, solo debemos reiniciar el servidor y posteriormente volver a ejecutar únicamente el comando previo con el que iniciamos el proceso.
+
+## Felicidades, si llegaste a este punto ya tienes tu aplicación de NEXTJS ejecutándose en tu servidor web con NGINX y PM2.
+
+![Imagen final](https://blog-vicente-jorquera.s3.amazonaws.com/instalar-nextjs-en-tu-servidor-linux/shot-so-large.webp)
