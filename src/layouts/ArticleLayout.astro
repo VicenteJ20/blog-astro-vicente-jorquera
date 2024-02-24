@@ -6,7 +6,7 @@ import AuthorCard from "../components/AuthorCard.astro";
 const { frontmatter, url } = Astro.props;
 ---
 
-<GeneralLayout title={frontmatter.title}>
+<GeneralLayout title={frontmatter.title} frontmatter={frontmatter}>
   <section class="flex flex-col gap-4 my-5">
     <ul class="text-sm flex flex-row gap-6 items-center">
       <li

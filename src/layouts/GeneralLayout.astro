@@ -2,7 +2,7 @@
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import { ViewTransitions } from "astro:transitions";
-const { title } = Astro.props;
+const { title, frontmatter, url } = Astro.props;
 ---
 
 <html lang="es">
@@ -12,20 +12,51 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title} | Vicente Jorquera</title>
+    {
+      frontmatter ? (
+        <>
+          <meta name="description" content={frontmatter.description} />
+          <meta property="og:title" content={frontmatter.title} />
+          <meta property="og:description" content={frontmatter.description} />
+          <meta property="og:image" content={frontmatter.image.url} />
+          <meta property="og:url" content={url} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={frontmatter.title} />
+          <meta name="twitter:description" content={frontmatter.description} />
+          <meta name="twitter:image" content={frontmatter.image} />
+        </>
+      ) : (
+        <>
+          <meta
+            name="description"
+            content="Bienvenido a mi blog, aquí encontrarás mis artículos donde comparto mi conocimiento y puedes encontrarte con respuestas a preguntas que me he realizado durante mi carrera. Además, si te diriges a mi web personal o redes sociales puedes sugerir contenido."
+          />
+          <meta property="og:title" content='Blog de Vicente Jorquera' />
+          <meta property="og:description" content='Bienvenido a mi blog, aquí encontrarás mis artículos donde comparto mi conocimiento y puedes encontrarte con respuestas a preguntas que me he realizado durante mi carrera. Además, si te diriges a mi web personal o redes sociales puedes sugerir contenido.' />
+          <meta property="og:image" content='/home-large.png' />
+          <meta property="og:url" content={url} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:domain" content={url} />
+          <meta name="twitter:title" content='Blog de Vicente Jorquera' />
+          <meta name="twitter:description" content='Bienvenido a mi blog, aquí encontrarás mis artículos donde comparto mi conocimiento y puedes encontrarte con respuestas a preguntas que me he realizado durante mi carrera. Además, si te diriges a mi web personal o redes sociales puedes sugerir contenido.' />
+          <meta name="twitter:image" content='/home-large.png' />
+        </>
+      )
+    }
     <ViewTransitions />
   </head>
   <body class="bg-slate-50 dark:bg-zinc-900">
     <Navbar />
-    <main class="max-w-screen-xl mx-auto px-4 sm:px-8 lg:px-4 py-20 min-h-[95vh] ">
+    <main
+      class="max-w-screen-xl mx-auto px-4 sm:px-8 lg:px-4 py-20 min-h-[95vh]"
+    >
       <slot />
     </main>
     <Footer />
-  </body>
+  </body><style>
+    @font-face {
+      font-family: "Manrope";
+      src: url("/fonts/Manrope.ttf") format("truetype");
+    }
+  </style>
 </html>
-
-<style>
-  @font-face {
-    font-family: "Manrope";
-    src: url("/fonts/Manrope.ttf") format("truetype");
-  }
-</style>
