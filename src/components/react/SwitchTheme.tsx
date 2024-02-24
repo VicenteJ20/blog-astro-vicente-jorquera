@@ -9,13 +9,16 @@ const Sun = <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" vie
 </svg>
 
 const SwitchTheme = () => {
-  const [theme, setTheme] = useState('light')
+  const userSelectedTheme = window.localStorage.getItem('theme')
+  const [theme, setTheme] = useState(userSelectedTheme || 'light')
 
   useEffect(() => {
     if (theme === 'dark') {
+      window.localStorage.setItem('theme', 'dark')
       document.querySelector('html').classList.add('dark')
     } else {
       document.querySelector('html').classList.remove('dark')
+      window.localStorage.setItem('theme', 'light')
     }
   }, [theme])
 

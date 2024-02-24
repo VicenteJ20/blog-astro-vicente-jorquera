@@ -45,16 +45,6 @@ const { frontmatter, url } = Astro.props;
   </article>
 </GeneralLayout>
 
-<script>
-  const frontDate = document.getElementsByClassName("date")[0];
-  const date = new Date(frontDate.textContent);
-  frontDate.textContent = date.toLocaleDateString("es-CL", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-</script>
-
 <style is:global>
   .article-md > p {
     font-size: 1.125rem;
