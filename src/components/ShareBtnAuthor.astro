@@ -1,0 +1,13 @@
+---
+const { url, title } = Astro.props;
+import Linkedin from '../icons/Linkedin.astro'
+import Twitter from '../icons/Twitter.astro'
+import Instagram from '../icons/Instagram.astro'
+---
+
+<a href={url} aria-label={`Visit my profile on ${title}`} target="_blank" rel="noreferrer" class='block text-2xl text-slate-800 dark:text-slate-300 hover:text-slate-500 dark:hover:text-slate-100 transition-all duration-300 ease-in-out'>
+  {
+    title === 'Linkedin'
+    ? <Linkedin /> : title === 'Twitter' ? <Twitter /> : <Instagram />
+  }
+</a>

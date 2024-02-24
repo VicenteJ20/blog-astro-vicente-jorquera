@@ -2,6 +2,7 @@
 import Image from "astro/components/Image.astro";
 import GeneralLayout from "./GeneralLayout.astro";
 import SocialLinks from "../components/SocialLinks.astro";
+import AuthorCard from "../components/AuthorCard.astro";
 const { frontmatter, url } = Astro.props;
 ---
 
@@ -43,6 +44,7 @@ const { frontmatter, url } = Astro.props;
   <article class='text-slate-700 dark:text-slate-200 article-md max-w-screen-lg mx-auto'>
     <slot />
   </article>
+  <AuthorCard />
 </GeneralLayout>
 
 <style is:global>
