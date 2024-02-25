@@ -284,6 +284,14 @@ Luego nos queda inicializar nuestro servicio con systemd (Es importante consider
 
 En caso de que nos arroje un error, solo debemos reiniciar el servidor y posteriormente volver a ejecutar únicamente el comando previo con el que iniciamos el proceso.
 
-## Felicidades, si llegaste a este punto ya tienes tu aplicación de NEXTJS ejecutándose en tu servidor web con NGINX y PM2.
+Felicidades, si llegaste a este punto ya tienes tu aplicación de NEXTJS ejecutándose en tu servidor web con NGINX y PM2.
 
 ![Imagen final](https://blog-vicente-jorquera.s3.amazonaws.com/instalar-nextjs-en-tu-servidor-linux/shot-so-large.webp)
+
+## Referencias
+
+- **Cómo correr un servidor de nodejs con nginx:** [https://blog.logrocket.com/how-to-run-a-node-js-server-with-nginx/](https://blog.logrocket.com/how-to-run-a-node-js-server-with-nginx/)
+
+- **Cómo usar PM2 para configurar un entorno de producción con PM2:** [https://www.digitalocean.com/community/tutorials/how-to-use-pm2-to-setup-a-node-js-production-environment-on-an-ubuntu-vps](https://www.digitalocean.com/community/tutorials/how-to-use-pm2-to-setup-a-node-js-production-environment-on-an-ubuntu-vps)
+
+- **Despliegue de NextJS manualmente**: [https://nextjs.org/docs/app/building-your-application/deploying](https://nextjs.org/docs/app/building-your-application/deploying)
