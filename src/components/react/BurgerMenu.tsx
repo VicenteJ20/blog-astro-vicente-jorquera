@@ -12,7 +12,7 @@ const BurgerMenu = () => {
 
     if (open) {
       navUl?.classList.remove('hidden', 'items-center')
-      navUl?.classList.add('flex', 'flex-col', 'items-start', 'bg-white', 'dark:bg-zinc-800', 'w-full', 'absolute', 'top-full', 'h-fit', 'left-0', 'p-5', 'text-xl')
+      navUl?.classList.add('flex', 'flex-col', 'items-start', 'bg-slate-50', 'dark:bg-zinc-900', 'w-full', 'absolute', 'top-full', 'h-fit', 'left-0', 'p-5', 'text-xl')
     } else {
       navUl?.classList.add('hidden');
       navUl?.classList.remove('flex', 'flex-col', 'items-start', 'bg-white', 'dark:bg-zinc-800', 'w-full', 'absolute', 'top-full', 'h-fit', 'left-0', 'p-5', 'text-xl')

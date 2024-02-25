@@ -27,8 +27,8 @@ const SwitchTheme = () => {
   }
 
   return (
-    <button type='button' title='change theme button' onClick={handleTheme} className='p-0 m-0 border-none flex items-center sm:pt-[0.2rem] text-lg gap-2 justify-center hover:text-lime-700 dark:hover:text-lime-500 transition-all duration-300 ease-in-out'>
-      {theme === 'dark' ? Sun : Moon}
+    <button type='button' title='change theme button' onClick={handleTheme} className='p-0 m-0 border-none flex items-center sm:pt-[0.2rem] text-xl gap-2 justify-center hover:text-lime-700 dark:hover:text-lime-500 transition-all duration-300 ease-in-out'>
+      <span className='text-2xl'>{theme === 'dark' ? Sun : Moon}</span>
       <span className='sm:hidden'>Cambiar tema</span>
     </button>
   )
