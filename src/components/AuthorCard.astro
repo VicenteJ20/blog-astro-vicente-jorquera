@@ -3,11 +3,11 @@ import { Image } from "astro:assets";
 import SocialLinksAuthor from "../components/SocialLinksAuthor.astro";
 ---
 
-<section class='mt-12 mb-3 w-full flex justify-center items-start bg-slate-200 dark:bg-zinc-800 rounded-xl gap-6 py-16 px-6'>
+<section class='mt-12 mb-3 w-full flex flex-col lg:flex-row justify-center items-start bg-slate-200 dark:bg-zinc-800 rounded-xl gap-6 py-10 lg:py-16 px-10'>
   <Image src='https://avatars.githubusercontent.com/u/88851263?v=4' alt='avatar' width={115} height={115} class='rounded-full' />
   <div class='max-w-xl flex flex-col gap-2'>
     <h2 class='text-slate-700 dark:text-slate-100 text-xl lg:text-2xl font-semibold'>Vicente Jorquera</h2>
-    <p class='text-slate-600 dark:text-slate-300 mb-3'>Ingeniero de software e Ingeniero en Informática. Me dedico a desarrollar soluciones de software íntegras y eficientes.</p>
+    <p class='text-slate-600 dark:text-slate-300 mb-3'>Desarrollador Full Stack e Ingeniero en Informática. Me dedico a desarrollar soluciones de software íntegras y eficientes.</p>
     <SocialLinksAuthor />
   </div>
 </section>
