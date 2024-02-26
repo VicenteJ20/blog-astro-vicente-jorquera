@@ -144,6 +144,12 @@ const { frontmatter, url } = Astro.props;
 
 <script transition:persist>
   window.links = document.querySelectorAll(".article-md a");
+  window.codeLine = document.querySelectorAll('.article-md p code')
+
+  
+  window.codeLine.forEach((item) => {
+    item.classList.add('break-all')
+  });
 
   window.links.forEach((item) => {
     item.setAttribute("target", "_blank");
