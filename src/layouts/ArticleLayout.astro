@@ -148,5 +148,6 @@ const { frontmatter, url } = Astro.props;
   window.links.forEach((item) => {
     item.setAttribute("target", "_blank");
     item.setAttribute("rel", "noopener noreferrer");
+    item.classList.add('break-all')
   });
 </script>
