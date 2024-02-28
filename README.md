@@ -10,7 +10,7 @@ Estas son algunas de las tecnologías que he utilizado para llevar a cabo el des
 
 - **Astro:** a modo de poner en práctica mis conocimientos en otros frameworks que no fueran NextJS (lo que más utilizo en proyectos) me encontré con Astro, una excelente opción para desarrollar webs estáticas y con un increíble rendimiento debido a que envía prácticamente nada de JS al cliente al aprovechar el SSR principalmente.
 
-- **Vercel:** como ya es costumbre para mi utilizo Vercel como servicio de hosting debido a que es gratuito para proyectos personales y de hobbie.
+- **Vercel:** como ya es costumbre para mi, utilizo Vercel como servicio de hosting debido a que es gratuito para proyectos personales y de hobby.
 
 - **Cloudflare:** gestor de dominios, subdominios y DNS. Es es el servicio al que le confio la gestión de mi dominio personal [vicentejorquera.dev](https://www.vicentejorquera.dev/)
 
@@ -21,3 +21,7 @@ Estas son algunas de las tecnologías que he utilizado para llevar a cabo el des
 - **Enlace al blog:** [https://blog.vicentejorquera.dev/](https://blog.vicentejorquera.dev)
 
 - **Enlace a mi web:** [https://www.vicentejorquera.dev/](https://www.vicentejorquera.dev)
+
+- **Mi LinkedIn:** [https://www.linkedin.com/in/vicentejorquera](https://www.linkedin.com/in/vicentejorquera)
+
+- **Instagram:** [https://www.instagram.com/jvicente_20](https://www.instagram.com/jvicente_20)
