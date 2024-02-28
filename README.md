@@ -1,47 +1,23 @@
-# Astro Starter Kit: Minimal
+![Home image](./public/home-large.png)
 
-```sh
-npm create astro@latest -- --template minimal
-```
+# Blog de Vicente Jorquera
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+Este es un proyecto personal desarrollado con la intención de compartir mis conocimientos y experiencias en IT con la comunidad. Sin embargo, no espero crear los mismos artículos o tutoriales que crean en todos lados, más bien, mis artículos son respuestas a preguntas que me he realizado en algún momento de mi carrera.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Tecnologías utilizadas
 
-## 🚀 Project Structure
+Estas son algunas de las tecnologías que he utilizado para llevar a cabo el desarrollo de mi blog.
 
-Inside of your Astro project, you'll see the following folders and files:
+- **Astro:** a modo de poner en práctica mis conocimientos en otros frameworks que no fueran NextJS (lo que más utilizo en proyectos) me encontré con Astro, una excelente opción para desarrollar webs estáticas y con un increíble rendimiento debido a que envía prácticamente nada de JS al cliente al aprovechar el SSR principalmente.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- **Vercel:** como ya es costumbre para mi utilizo Vercel como servicio de hosting debido a que es gratuito para proyectos personales y de hobbie.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- **Cloudflare:** gestor de dominios, subdominios y DNS. Es es el servicio al que le confio la gestión de mi dominio personal [vicentejorquera.dev](https://www.vicentejorquera.dev/)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- **Amazon S3:** tras estar aprendiendo la ruta de Cloud Partitioner de AWS, uno de los servicios gratuitos para siempre que parecio útil para almacenar mis imágenes es Amazon S3 (Amazon Simple Storage Service) permite agregar buckets infinitos y cuentas con 5gb de espacio gratuito además de una cuota de transferencia bastante generosa (expandible a través de un pago por uso de la misma).
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Enlaces relacionados
 
-## 🧞 Commands
+- **Enlace al blog:** [https://blog.vicentejorquera.dev/](https://blog.vicentejorquera.dev)
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- **Enlace a mi web:** [https://www.vicentejorquera.dev/](https://www.vicentejorquera.dev)
