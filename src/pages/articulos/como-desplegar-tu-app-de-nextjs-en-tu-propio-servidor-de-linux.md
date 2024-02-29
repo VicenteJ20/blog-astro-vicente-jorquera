@@ -255,6 +255,28 @@ En caso de tener un dominio personalizado se debe agregar este código:
 
 Esto le dice a NGINX que escuche en el puerto 80 y cuando reciba una petición internamente la redirija al puerto 3000 abierto en el localhost, de esta manera bastará con cargar la IP pública para acceder a nuestra aplicación.
 
+Es posible que en algunos casos la configuración por default de NGINX nos impida visualizar nuestra web como queremos, en estos casos podemos modificar el archivo default ubicado en la ruta **/etc/nginx/sites-available** o directamente como suelo hacer yo, eliminarlo para que quede nuestro nuevo archivo, solo con la configuración que hayamos definido manualmente. Algo importante a tener en cuenta es que para que NGINX funcione correctamente debemos tener agregar un archivo a la carpeta **/etc/nginx/sites-enabled**, este archivo debe ser un link simbólico de nuestro archivo original que está en la carpeta sites-available. Esto lo comento porque también eliminar el archivo default desde la carpeta **sites-enabled**, esto lo hacemos la siguiente manera:
+
+```
+sudo rm -rf /etc/nginx/sites-available/default
+
+sudo rm -rf /etc/nginx/sites-enabled/default
+```
+
+Una vez tengamos dichos archivos eliminados, debemos agregar un link simbólico a nuestro propio archivo de configuración, y esto lo logramos de la siguiente manera:
+
+```
+sudo ln -s /etc/nginx/sites-available/my-app.com /etc/nginx/sites-enabled/ 
+```
+
+el comando anterior creará un link simbólico en la carpeta sites-enabled para el archivo my-app.com (la configuración que acabamos de escribir manualmente).
+
+Finalmente debemos ejecutar el comando para reiniciar el servidor y ver el estado actual de NGINX:
+
+```
+sudo systemctl restart nginx && sudo systemctl status nginx
+```
+
 En este momento ya deberíamos tener nuestra aplicación funcionando y visible a través de NGINX como podemos ver en la siguiente imagen:
 
 ## Paso 5: Configurando nuestra app de PM2 como servicio
