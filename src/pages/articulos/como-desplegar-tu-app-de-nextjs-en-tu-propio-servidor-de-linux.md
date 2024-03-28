@@ -30,19 +30,19 @@ Antes de comenzar el despliegue necesitaremos de lo siguiente:
   - **Distribuciones basadas en Debian:**
 
   ```
-      sudo apt update && sudo apt upgrade -y
+    sudo apt update && sudo apt upgrade -y
 
-      sudo apt install nginx
+    sudo apt install nginx
   ```
 
   - **Distribuciones basadas en RHEL**
 
   ```
-      sudo dnf update -y // o con yum
+    sudo dnf update -y // o con yum
 
-      sudo yum update -y
+    sudo yum update -y
 
-      sudo dnf install nginx
+    sudo dnf install nginx
   ```
 
 - **(Opcional) Cuenta de AWS / Azure / Google Cloud** - Como mencioné previamente, el contenido de este artículo será válido para cualquiera de las nubes grandes, así también con tu propio servidor por esto este prerequisito es opcional. Sin embargo, con el fin de asegurar la disponibilidad de nuestra aplicación sería una buena inversión contratar los servicios de AWS, Azure o Google cloud.
@@ -52,7 +52,7 @@ Antes de comenzar el despliegue necesitaremos de lo siguiente:
 Como con cualquier instalación de paquetes en cualquier distribución GNU/Linux es importante tener el caché del repositorio y las dependencias actualizadas, en esta ocación con **Ubuntu** se hace de la siguiente manera:
 
 ```
-    sudo apt update && sudo apt upgrade -y
+sudo apt update && sudo apt upgrade -y
 ```
 
 El comando anterior se encargará de refrescar los repositorios en caso de que tengamos paquetes nuevos por instalar y el segundo se encargará de descargar e instalar dichos paquetes, al agregar **-y** le decimos que queremos confirmar automáticamente la instalación de dicha paquetería.
@@ -60,17 +60,17 @@ El comando anterior se encargará de refrescar los repositorios en caso de que t
 ### Una vez con toda la paquetería actualizada, procedemos con la instalación del web server:
 
 ```
-    sudo apt install nginx -y
+sudo apt install nginx -y
 ```
 
 ### Una vez que el paquete termine de instalarse debemos inicializarlo, para esto ejectutamos los siguientes comandos:
 
 ```
-    sudo systemctl start nginx
+sudo systemctl start nginx
 
-    sudo systemctl enable nginx
+sudo systemctl enable nginx
 
-    sudo systemctl status nginx
+sudo systemctl status nginx
 ```
 
 ### Los comandos hacen lo siguiente:
@@ -94,7 +94,7 @@ Si todo ha ido como se espera, a este punto deberíamos ser capaces de buscar la
 1. **Instalación de Git**
 
    ```
-       sudo apt install git -y
+    sudo apt install git -y
    ```
 
 2. **Instalación de NodeJS**
@@ -111,9 +111,9 @@ Si todo ha ido como se espera, a este punto deberíamos ser capaces de buscar la
    Para visualizar la versión actual instalada en nuestro sistema podemos hacerlo con los siguientes comandos:
 
    ```
-       node -v
+    node -v
 
-       npm -v
+    npm -v
    ```
 
    Dichos comandos nos mostraran una salida como la siguiente:
@@ -131,7 +131,7 @@ Si todo ha ido como se espera, a este punto deberíamos ser capaces de buscar la
    Una vez tengamos instalado NodeJS bastará con ejectuar el comando:
 
    ```
-       sudo npm i -g pm2
+    sudo npm i -g pm2
    ```
 
    Es importante que utilicemos sudo ya que al menos **Ubuntu Server** evitará que utilicemos el comando npm como un usuario normal y corriente, adicionalmente necesitaremos la banderilla `-g` (global) que nos permitirá utilizar pm2 desde cualquier lugar del sistema operativo.
@@ -143,8 +143,8 @@ En mi caso personal utilizo y recomiendo utilizar Git para llevar de forma fáci
 En este caso cree una carpeta llamada **proyecto** y ahí dentro cloné mi app de NextJS desde Github quedando de la siguiente manera:
 
 ```
-    ./proyecto/
-    └── app-ejemplo
+./proyecto/
+└── app-ejemplo
 ```
 
 Bien, con esto listo podemos asegurarnos de instalas los **node_modules** y las dependencias que sean requeridas según el proyecto. En este caso estoy utilizando una aplicación extremadamente simple que solo muestra un **Hola mundo de NextJS** cuando se ejecuta.
@@ -152,11 +152,11 @@ Bien, con esto listo podemos asegurarnos de instalas los **node_modules** y las 
 Con todo esto listo, debemos crear una compilación de nuestra aplicación con el comando:
 
 ```
-    sudo npm run build
+sudo npm run build
 
-    // o podemos usar (ambos hacen lo mismo)
+// o podemos usar (ambos hacen lo mismo)
 
-    sudo npm next build
+sudo npm next build
 ```
 
 Esto comenzará el proceso de compilación de nuestra aplicación y si finalmente todo sale como se espera dentro del mismo directorio tendremos disponible la versión compilada del proyecto.
@@ -195,13 +195,13 @@ A continuación debemos asegurarnos de que nuestro proyecto se ejecute automáti
 Lo primero es situarse en la ruta donde raíz de nuestro proyecto, en mi caso en esta ruta:
 
 ```
-    cd ./proyecto/app-ejemplo
+cd ./proyecto/app-ejemplo
 ```
 
 Una vez ubicados en la ruta raíz procedemos a ejecutar el siguiente comando:
 
 ```
-    pm2 start npm --name 'my-app' -- start
+pm2 start npm --name 'my-app' -- start
 ```
 
 El comando anterior se encargará de ejecutar nuestra aplicación de NextJS compilada y le asignará el nombre de **my-app** al gestor de procesos **pm2**, otro de los beneficios agregados de **PM2** es que nuestra aplicación se reiniciará automáticamente si se crashea en producción.
@@ -209,13 +209,13 @@ El comando anterior se encargará de ejecutar nuestra aplicación de NextJS comp
 Una vez hayamos ejecutado el comando previo y tengamos éxito veremos la siguiente salida:
 
 ```
-    [PM2] Starting /usr/bin/npm in fork_mode (1 instance)
-    [PM2] Done.
-    ┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
-    │ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
-    ├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
-    │ 0  │ my-app             │ fork     │ 0    │ online    │ 0%       │ 7.6mb    │
-    └────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
+[PM2] Starting /usr/bin/npm in fork_mode (1 instance)
+[PM2] Done.
+┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
+│ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
+├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
+│ 0  │ my-app             │ fork     │ 0    │ online    │ 0%       │ 7.6mb    │
+└────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
 ```
 
 ## Paso 4: Configurar NGINX para que dirija las peticiones en el puerto 80 a nuestra app
@@ -223,7 +223,7 @@ Una vez hayamos ejecutado el comando previo y tengamos éxito veremos la siguien
 Esto nos permitirá tener un despliegue escalable, ya que cuando aumenten las instancias de nuestra aplicación o tengamos diferentes servicios basados en la región desde donde se está haciendo la petición (por ejemplo) podremos configurarlo con mucha facilidad en nuestro servidor NGINX, por ahora, vamos a redireccionar las peticiones del puerto 80 al 3000 de la siguiente manera:
 
 ```
-    sudo nano /etc/nginx/sites-available/my-app.com
+sudo nano /etc/nginx/sites-available/my-app.com
 ```
 
 Con el comando anterior abriremos un nuevo archivo llamado **my-app.com** en la ruta **/etc/nginx/sites-available/** en el editor **nano**, si no tienes nano instalado, puedes reemplazar nano por **vi** y seguro que funcionará en tu distribución. Continuando con la explicación, se recomienda que reemplaces **my-app-com** por el nombre de tu aplicación o el dominio de tu web, esto no es estrictamente necesario pero es una práctica común en servidores de NGINX para diferenciar los sitios que existen dentro de **NGINX**.
@@ -231,31 +231,33 @@ Con el comando anterior abriremos un nuevo archivo llamado **my-app.com** en la 
 A continuación debemos pegar el siguiente código en el archivo que acabamos de crear: (UTILIZANDO LA IP)
 
 ```
-    server {
-        listen 80;
-        location / {
-                proxy_pass http://localhost:3000;
-        }
+server {
+    listen 80;
+    location / {
+        proxy_pass http://localhost:3000;
     }
+}
 ```
 
 En caso de tener un dominio personalizado se debe agregar este código:
 
 ```
-    server {
-        listen 80;
-        server_name tudominio.com www.tudominio.com;
-        location / {
-            proxy_pass http://localhost:3000;
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-        }
+server {
+    listen 80;
+    server_name tudominio.com www.tudominio.com;
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
     }
+}
 ```
 
 Esto le dice a NGINX que escuche en el puerto 80 y cuando reciba una petición internamente la redirija al puerto 3000 abierto en el localhost, de esta manera bastará con cargar la IP pública para acceder a nuestra aplicación.
 
-Es posible que en algunos casos la configuración por default de NGINX nos impida visualizar nuestra web como queremos, en estos casos podemos modificar el archivo default ubicado en la ruta **/etc/nginx/sites-available** o directamente como suelo hacer yo, eliminarlo para que quede nuestro nuevo archivo, solo con la configuración que hayamos definido manualmente. Algo importante a tener en cuenta es que para que NGINX funcione correctamente debemos tener agregar un archivo a la carpeta **/etc/nginx/sites-enabled**, este archivo debe ser un link simbólico de nuestro archivo original que está en la carpeta sites-available. Esto lo comento porque también eliminar el archivo default desde la carpeta **sites-enabled**, esto lo hacemos la siguiente manera:
+Es posible que en algunos casos la configuración por default de NGINX nos impida visualizar nuestra web como queremos, en estos casos podemos modificar el archivo default ubicado en la ruta **/etc/nginx/sites-available** o directamente como suelo hacer yo, eliminarlo para que quede nuestro nuevo archivo, solo con la configuración que hayamos definido manualmente.
+
+Algo importante a tener en cuenta es que para que NGINX funcione correctamente debemos tener agregar un archivo a la carpeta **/etc/nginx/sites-enabled**, este archivo debe ser un link simbólico de nuestro archivo original que está en la carpeta sites-available. Esto lo comento porque también eliminar el archivo default desde la carpeta **sites-enabled**, esto lo hacemos la siguiente manera:
 
 ```
 sudo rm -rf /etc/nginx/sites-available/default
@@ -266,7 +268,7 @@ sudo rm -rf /etc/nginx/sites-enabled/default
 Una vez tengamos dichos archivos eliminados, debemos agregar un link simbólico a nuestro propio archivo de configuración, y esto lo logramos de la siguiente manera:
 
 ```
-sudo ln -s /etc/nginx/sites-available/my-app.com /etc/nginx/sites-enabled/ 
+sudo ln -s /etc/nginx/sites-available/my-app.com /etc/nginx/sites-enabled/
 ```
 
 el comando anterior creará un link simbólico en la carpeta sites-enabled para el archivo my-app.com (la configuración que acabamos de escribir manualmente).
@@ -284,16 +286,16 @@ En este momento ya deberíamos tener nuestra aplicación funcionando y visible a
 Como mencioné al inicio de este artículo, una funcionalidad específica de esta guía era hacer que nuestra aplicación sea accesible por el mundo nada más encendamos el servidor, sin la necesidad de estar manualmente encendiendo la app con pm2. El proceso es bastante simple y se realiza con el siguiente comando:
 
 ```
-    pm2 startup systemd
+pm2 startup systemd
 ```
 
 Esto nos arrojará el siguiente resultado:
 
 ```
-    ubuntu@ubuntu:~/proyecto/app-ejemplo$ pm2 startup systemd
-    [PM2] Init System found: systemd
-    [PM2] To setup the Startup Script, copy/paste the following command:
-    sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ubuntu --hp /home/ubuntu
+ubuntu@ubuntu:~/proyecto/app-ejemplo$ pm2 startup systemd
+[PM2] Init System found: systemd
+[PM2] To setup the Startup Script, copy/paste the following command:
+sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ubuntu --hp /home/ubuntu
 ```
 
 Finalmente copiamos la última línea y la ejecutamos en nuestra terminal. Volvemos a ejecutar **pm2 save**
@@ -301,7 +303,7 @@ Finalmente copiamos la última línea y la ejecutamos en nuestra terminal. Volve
 Luego nos queda inicializar nuestro servicio con systemd (Es importante considerar que **ubuntu** se refiere al usuario en la máquina):
 
 ```
-    sudo systemctl start pm2-ubuntu && sudo systemctl status pm2-ubuntu
+sudo systemctl start pm2-ubuntu && sudo systemctl status pm2-ubuntu
 ```
 
 En caso de que nos arroje un error, solo debemos reiniciar el servidor y posteriormente volver a ejecutar únicamente el comando previo con el que iniciamos el proceso.
